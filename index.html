@@ -55,7 +55,7 @@
 
     .container {
       width: 380px;
-      height: 500px; /* Ukuran ditambah sedikit agar pas */
+      height: 500px;
       perspective: 1200px;
     }
 
@@ -77,7 +77,7 @@
       height: 100%;
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px); /* Untuk support Safari */
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 40px 30px;
@@ -157,17 +157,27 @@
       gap: 10px;
     }
 
+    /* Styling Ikon Sosial agar rapi */
     .social button {
       flex: 1;
       background: rgba(255,255,255,0.1);
       font-size: 13px;
       font-weight: 400;
       margin-top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px; /* Jarak antara ikon dan teks */
+    }
+
+    .social button img {
+      width: 18px; /* Ukuran ikon disesuaikan */
+      height: 18px;
     }
 
     p {
       text-align: center;
-      margin-top: auto; /* Mendorong teks ke bawah */
+      margin-top: auto;
       font-size: 14px;
     }
 
@@ -195,8 +205,12 @@
         <button>Login</button>
 
         <div class="social">
-          <button><img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png">Google</button>
-          <button><img src="https://cdn.iconscout.com/icon/free/png-256/free-discord-logo-icon-svg-download-png-1581238.png">Discord</button>
+          <button>
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="G"> Google
+          </button>
+          <button>
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="D"> Discord
+          </button>
         </div>
 
         <p>Don't have an account? <span onclick="flip()">Sign up</span></p>
@@ -216,8 +230,12 @@
         <button>Sign Up</button>
 
         <div class="social">
-          <button><img src="google-icon.png">Google</button>
-          <button><img src="discord-icon.png">Discord</button>
+          <button>
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="G"> Google
+          </button>
+          <button>
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="D"> Discord
+          </button>
         </div>
 
         <p>Already have an account? <span onclick="flip()">Login</span></p>
