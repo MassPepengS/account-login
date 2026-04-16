@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Login</title>
+  <title>Modern Transparent Login - Diprella Style</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -23,17 +23,17 @@
       position: relative;
     }
 
-    /* Efek Glow Latar Belakang */
+    /* Efek Glow Latar Belakang (dipertahankan) */
     body::before {
       content: "";
       position: absolute;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, rgba(102,126,234,0.4), transparent 70%);
+      background: radial-gradient(circle, rgba(102,126,234,0.3), transparent 70%);
       top: -100px;
       left: -100px;
-      animation: moveGlow 8s infinite alternate;
-      z-index: -1;
+      animation: moveGlow 15s infinite alternate;
+      z-index: 1;
     }
 
     body::after {
@@ -41,22 +41,25 @@
       position: absolute;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(118,75,162,0.4), transparent 70%);
+      background: radial-gradient(circle, rgba(118,75,162,0.3), transparent 70%);
       bottom: -100px;
       right: -100px;
-      animation: moveGlow 10s infinite alternate-reverse;
-      z-index: -1;
+      animation: moveGlow 20s infinite alternate-reverse;
+      z-index: 1;
     }
 
     @keyframes moveGlow {
       0% { transform: translate(0, 0); }
-      100% { transform: translate(60px, 60px); }
+      100% { transform: translate(80px, 80px); }
     }
 
+    /* === STYLES UNTUK KARTU (Duplikasi Referensi) === */
     .container {
       width: 380px;
-      height: 500px;
+      height: 500px; /* Ukuran pas untuk semua elemen */
       perspective: 1200px;
+      z-index: 10;
+      position: relative;
     }
 
     .card {
@@ -75,14 +78,15 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      /* Glassmorphism effect: diperkuat blurnya */
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 40px 30px;
       backface-visibility: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
       color: #fff;
       display: flex;
       flex-direction: column;
@@ -92,13 +96,16 @@
       transform: rotateY(180deg);
     }
 
+    /* Judul modern & besar */
     h2 {
       text-align: center;
       margin-bottom: 25px;
       font-weight: 600;
       letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
+    /* Input box transparan sempurna */
     .input-box {
       margin-bottom: 15px;
     }
@@ -107,23 +114,24 @@
       width: 100%;
       padding: 12px 15px;
       border-radius: 10px;
-      border: 1px solid transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1); /* Border tipis transparan */
       outline: none;
-      background: rgba(255,255,255,0.1);
+      background: rgba(0, 0, 0, 0.2); /* Gelap transparan agar input terlihat */
       color: #fff;
       transition: 0.3s;
     }
 
     .input-box input:focus {
       border: 1px solid #8a9cff;
-      background: rgba(255,255,255,0.15);
-      box-shadow: 0 0 10px rgba(138,156,255,0.3);
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 15px rgba(138,156,255,0.4);
     }
 
     .input-box input::placeholder {
-      color: #ccc;
+      color: #aaa;
     }
 
+    /* Tombol gradasi utama */
     button {
       width: 100%;
       padding: 12px;
@@ -135,32 +143,40 @@
       margin-top: 10px;
       font-weight: 600;
       transition: 0.3s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
 
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(102,126,234,0.4);
-      opacity: 0.9;
+      box-shadow: 0 7px 20px rgba(102,126,234,0.5);
+      opacity: 0.95;
     }
 
+    /* Forgot password dipertahankan */
     .forgot {
       text-align: right;
       font-size: 12px;
       margin-top: 5px;
       cursor: pointer;
-      color: #cfd3ff;
+      color: #bbb;
+      transition: 0.3s;
     }
 
+    .forgot:hover {
+      color: #fff;
+    }
+
+    /* Baris tombol sosial */
     .social {
       margin-top: 20px;
       display: flex;
       gap: 10px;
     }
 
-    /* Styling Ikon Sosial agar rapi */
+    /* Styling Ikon Sosial agar rapi (Sama seperti update sebelumnya) */
     .social button {
       flex: 1;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08); /* Sangat transparan */
       font-size: 13px;
       font-weight: 400;
       margin-top: 0;
@@ -168,23 +184,37 @@
       align-items: center;
       justify-content: center;
       gap: 8px; /* Jarak antara ikon dan teks */
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    .social button:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* Ukuran ikon disesuaikan */
     .social button img {
-      width: 18px; /* Ukuran ikon disesuaikan */
+      width: 18px; 
       height: 18px;
     }
 
+    /* Bagian bawah (Don't have an account) */
     p {
       text-align: center;
-      margin-top: auto;
+      margin-top: auto; /* Mendorong teks ke bawah */
       font-size: 14px;
+      color: #ccc;
     }
 
     span {
       color: #a8b2ff;
       cursor: pointer;
       font-weight: bold;
+      text-decoration: none; /* Lebih bersih tanpa underline di awal */
+      transition: 0.3s;
+    }
+
+    span:hover {
+      color: #fff;
       text-decoration: underline;
     }
   </style>
@@ -206,10 +236,12 @@
 
         <div class="social">
           <button>
-            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="G"> Google
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google Logo">
+            Google
           </button>
           <button>
-            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="D"> Discord
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord Logo">
+            Discord
           </button>
         </div>
 
@@ -231,10 +263,12 @@
 
         <div class="social">
           <button>
-            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="G"> Google
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Google Logo">
+            Google
           </button>
           <button>
-            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="D"> Discord
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord Logo">
+            Discord
           </button>
         </div>
 
@@ -244,6 +278,7 @@
   </div>
 
   <script>
+    // Fungsi untuk memutar kartu
     function flip() {
       document.getElementById('container').classList.toggle('active');
     }
