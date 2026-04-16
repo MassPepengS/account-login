@@ -11,12 +11,14 @@
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
-}
+
+height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at top, #2b2b4b, #1e1e2f); overflow: hidden; }
+
+/* animated glow */ body::before { content: ""; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(102,126,234,0.4), transparent 70%); top: -100px; left: -100px; animation: moveGlow 8s infinite alternate; }
+
+body::after { content: ""; position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(118,75,162,0.4), transparent 70%); bottom: -100px; right: -100px; animation: moveGlow 10s infinite alternate-reverse; }
+
+@keyframes moveGlow { 0% { transform: translate(0,0); } 100% { transform: translate(50px,50px); } }
 
 .container {
   width: 380px;
@@ -88,11 +90,10 @@ button {
   margin-top: 10px;
   font-weight: 600;
   transition: 0.3s;
-  
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
+
+button:hover {
+  opacity: 0.85;
 }
 
 p {
@@ -118,7 +119,19 @@ span {
   background: rgba(255,255,255,0.15);
 }
 
-  </style>
+/* === ADDITIONS (non-destructive) === */
+
+/* Fix hover without touching original block */ button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
+/* Input focus effect */ .input-box input:focus { border: 1px solid #8a9cff; box-shadow: 0 0 10px rgba(138,156,255,0.5); }
+
+/* Social button icon */ .social button { display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+.social button img { width: 18px; height: 18px; }
+
+/* Forgot password */ .forgot { text-align: right; font-size: 12px; margin-top: -5px; cursor: pointer; color: #cfd3ff; }
+
+</style>
 </head>
 <body>  <div class="container" id="container">
     <div class="card"><!-- Login -->
@@ -131,10 +144,11 @@ span {
       <input type="password" placeholder="Password" required>
     </div>
     <button>Login</button>
+<div class="forgot">Forgot Password?</div>
 
     <div class="social">
-      <button><img src="google-icon.png">Google</button>
-      <button><img src="discord-icon.png">Discord</button>
+      <button>Google</button>
+      <button>Facebook</button>
     </div>
 
     <p>Don't have an account? <span onclick="flip()">Sign up</span></p>
@@ -155,8 +169,8 @@ span {
     <button>Sign Up</button>
 
     <div class="social">
-      <button><img src="google-icon.png">Google</button>
-      <button><img src="discord-icon.png">Discord</button>
+      <button>Google</button>
+      <button>Facebook</button>
     </div>
 
     <p>Already have an account? <span onclick="flip()">Login</span></p>
