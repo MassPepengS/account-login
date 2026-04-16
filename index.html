@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,177 +11,225 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-    }body {
+    }
 
-height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at top, #2b2b4b, #1e1e2f); overflow: hidden; }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #2b2b4b, #1e1e2f);
+      overflow: hidden;
+      position: relative;
+    }
 
-/* animated glow */ body::before { content: ""; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(102,126,234,0.4), transparent 70%); top: -100px; left: -100px; animation: moveGlow 8s infinite alternate; }
+    /* Efek Glow Latar Belakang */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(102,126,234,0.4), transparent 70%);
+      top: -100px;
+      left: -100px;
+      animation: moveGlow 8s infinite alternate;
+      z-index: -1;
+    }
 
-body::after { content: ""; position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(118,75,162,0.4), transparent 70%); bottom: -100px; right: -100px; animation: moveGlow 10s infinite alternate-reverse; }
+    body::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(118,75,162,0.4), transparent 70%);
+      bottom: -100px;
+      right: -100px;
+      animation: moveGlow 10s infinite alternate-reverse;
+      z-index: -1;
+    }
 
-@keyframes moveGlow { 0% { transform: translate(0,0); } 100% { transform: translate(50px,50px); } } 100% { transform: translate(60px,60px); } } 100% { transform: translate(50px,50px); } }
+    @keyframes moveGlow {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(60px, 60px); }
+    }
 
-.container {
-  width: 380px;
-  height: 480px;
-  perspective: 1200px;
-}
+    .container {
+      width: 380px;
+      height: 500px; /* Ukuran ditambah sedikit agar pas */
+      perspective: 1200px;
+    }
 
-.card {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-}
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
 
-.container.active .card {
-  transform: rotateY(180deg);
-}
+    .container.active .card {
+      transform: rotateY(180deg);
+    }
 
-.form-box {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 30px;
-  backface-visibility: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  color: #fff;
-}
+    .form-box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); /* Untuk support Safari */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px 30px;
+      backface-visibility: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
 
-.signup {
-  transform: rotateY(180deg);
-}
+    .signup {
+      transform: rotateY(180deg);
+    }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
 
-.input-box {
-  margin-bottom: 15px;
-}
+    .input-box {
+      margin-bottom: 15px;
+    }
 
-.input-box input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  background: rgba(255,255,255,0.2);
-  color: #fff;
-}
+    .input-box input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      outline: none;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      transition: 0.3s;
+    }
 
-.input-box input::placeholder {
-  color: #ddd;
-}
+    .input-box input:focus {
+      border: 1px solid #8a9cff;
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 10px rgba(138,156,255,0.3);
+    }
 
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: #fff;
-  cursor: pointer;
-  margin-top: 10px;
-  font-weight: 600;
-  transition: 0.3s;
-}
+    .input-box input::placeholder {
+      color: #ccc;
+    }
 
-button:hover {
-  opacity: 0.85;
-}
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
 
-p {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
-}
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+      opacity: 0.9;
+    }
 
-span {
-  color: #a8b2ff;
-  cursor: pointer;
-  font-weight: bold;
-}
+    .forgot {
+      text-align: right;
+      font-size: 12px;
+      margin-top: 5px;
+      cursor: pointer;
+      color: #cfd3ff;
+    }
 
-.social {
-  margin-top: 15px;
-  display: flex;
-  gap: 10px;
-}
+    .social {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
 
-.social button {
-  flex: 1;
-  background: rgba(255,255,255,0.15);
-}
+    .social button {
+      flex: 1;
+      background: rgba(255,255,255,0.1);
+      font-size: 13px;
+      font-weight: 400;
+      margin-top: 0;
+    }
 
-/* === ADDITIONS (non-destructive) === */
+    p {
+      text-align: center;
+      margin-top: auto; /* Mendorong teks ke bawah */
+      font-size: 14px;
+    }
 
-/* Fix hover without touching original block */ button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-
-/* Input focus effect */ .input-box input:focus { border: 1px solid #8a9cff; box-shadow: 0 0 10px rgba(138,156,255,0.5); }
-
-/* Social button icon */ .social button { display: flex; align-items: center; justify-content: center; gap: 8px; }
-
-.social button img { width: 18px; height: 18px; }
-
-/* Forgot password */ .forgot { text-align: right; font-size: 12px; margin-top: -5px; cursor: pointer; color: #cfd3ff; }
-
-</style>
+    span {
+      color: #a8b2ff;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body>  <div class="container" id="container">
-    <div class="card"><!-- Login -->
-  <div class="form-box login">
-    <h2>Welcome Back</h2>
-    <div class="input-box">
-      <input type="email" placeholder="Email" required>
-    </div>
-    <div class="input-box">
-      <input type="password" placeholder="Password" required>
-    </div>
-    <button>Login</button>
-<div class="forgot">Forgot Password?</div>
+<body>
 
-    <div class="social">
-      <button>Google</button>
-      <button>Facebook</button>
-    </div>
+  <div class="container" id="container">
+    <div class="card">
+      <div class="form-box login">
+        <h2>Welcome Back</h2>
+        <div class="input-box">
+          <input type="email" placeholder="Email" required>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Password" required>
+        </div>
+        <div class="forgot">Forgot Password?</div>
+        <button>Login</button>
 
-    <p>Don't have an account? <span onclick="flip()">Sign up</span></p>
+        <div class="social">
+          <button>Google</button>
+          <button>Facebook</button>
+        </div>
+
+        <p>Don't have an account? <span onclick="flip()">Sign up</span></p>
+      </div>
+
+      <div class="form-box signup">
+        <h2>Create Account</h2>
+        <div class="input-box">
+          <input type="text" placeholder="Username" required>
+        </div>
+        <div class="input-box">
+          <input type="email" placeholder="Email" required>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Password" required>
+        </div>
+        <button>Sign Up</button>
+
+        <div class="social">
+          <button>Google</button>
+          <button>Facebook</button>
+        </div>
+
+        <p>Already have an account? <span onclick="flip()">Login</span></p>
+      </div>
+    </div>
   </div>
 
-  <!-- Signup -->
-  <div class="form-box signup">
-    <h2>Create Account</h2>
-    <div class="input-box">
-      <input type="text" placeholder="Username" required>
-    </div>
-    <div class="input-box">
-      <input type="email" placeholder="Email" required>
-    </div>
-    <div class="input-box">
-      <input type="password" placeholder="Password" required>
-    </div>
-    <button>Sign Up</button>
-
-    <div class="social">
-      <button>Google</button>
-      <button>Facebook</button>
-    </div>
-
-    <p>Already have an account? <span onclick="flip()">Login</span></p>
-  </div>
-
-</div>
-
-  </div>  <script>
+  <script>
     function flip() {
       document.getElementById('container').classList.toggle('active');
     }
-  </script>  </body>
+  </script>
+
+</body>
 </html>
