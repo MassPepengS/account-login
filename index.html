@@ -12,23 +12,13 @@
       font-family: 'Poppins', sans-serif;
     }body {
 
-height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at top, #0f2e1c, #06140d); overflow: hidden; }
+height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at top, #2b2b4b, #1e1e2f); overflow: hidden; }
 
-/* forest glow */ body::before { content: ""; position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(34,139,34,0.4), transparent 70%); top: -150px; left: -150px; animation: moveGlow 10s infinite alternate; }
+/* animated glow */ body::before { content: ""; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(102,126,234,0.4), transparent 70%); top: -100px; left: -100px; animation: moveGlow 8s infinite alternate; }
 
-body::after { content: ""; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,255,150,0.25), transparent 70%); bottom: -150px; right: -150px; animation: moveGlow 12s infinite alternate-reverse; }
+body::after { content: ""; position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(118,75,162,0.4), transparent 70%); bottom: -100px; right: -100px; animation: moveGlow 10s infinite alternate-reverse; }
 
-/* dinosaur silhouette */ body::marker {}
-
-body::selection {}
-
-body::backdrop {}
-
-/* decorative dino */ body::before, body::after {}
-
-.dino { position: absolute; bottom: 20px; right: 20px; width: 120px; opacity: 0.15; }
-
-@keyframes moveGlow { 0% { transform: translate(0,0); } 100% { transform: translate(60px,60px); } } 100% { transform: translate(50px,50px); } }
+@keyframes moveGlow { 0% { transform: translate(0,0); } 100% { transform: translate(50px,50px); } } 100% { transform: translate(60px,60px); } } 100% { transform: translate(50px,50px); } }
 
 .container {
   width: 380px;
@@ -192,5 +182,5 @@ span {
     function flip() {
       document.getElementById('container').classList.toggle('active');
     }
-  </script>  <!-- Dino Decoration -->  <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" class="dino"></body>
+  </script>  </body>
 </html>
