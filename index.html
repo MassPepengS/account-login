@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login Form - Show/Hide Password</title>
+    <title>Fixed Modern Login/Signup</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
         * {
             margin: 0;
@@ -56,9 +56,6 @@
         .form-box.register { visibility: hidden; }
         .container.active .form-box.register { visibility: visible; }
 
-        h1 { font-size: 36px; color: #fff; margin-bottom: 10px; }
-        p { font-size: 14.5px; color: #cbd5e1; margin: 15px 0; }
-
         .input-box {
             position: relative;
             margin: 25px 0;
@@ -76,7 +73,6 @@
             transition: 0.3s;
         }
 
-        /* Focus Glow */
         .input-box input:focus {
             border-color: #6366f1;
             box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
@@ -89,15 +85,7 @@
             transform: translateY(-50%);
             font-size: 20px;
             color: #fff;
-        }
-
-        /* Style khusus untuk Ikon Mata (Toggle) */
-        .input-box i.toggle-pass {
             cursor: pointer;
-            transition: 0.2s;
-        }
-        .input-box i.toggle-pass:hover {
-            color: #6366f1;
         }
 
         .btn {
@@ -129,12 +117,6 @@
             transition: 0.3s;
         }
 
-        .social-icons a:hover {
-            transform: scale(1.1);
-            border-color: #6366f1;
-        }
-
-        /* Toggle Panel */
         .toggle-box::before {
             content: "";
             position: absolute;
@@ -146,6 +128,7 @@
             z-index: 2;
             transition: 1.8s ease-in-out;
         }
+
         .container.active .toggle-box::before { left: 50%; }
 
         .toggle-panel {
@@ -166,22 +149,55 @@
         .toggle-right { right: -50%; transition-delay: 0.6s; }
         .container.active .toggle-right { right: 0; transition-delay: 1.2s; }
 
-        .toggle-panel .btn {
-            width: 160px;
-            background: transparent;
-            border: 2px solid #fff;
-        }
-
+        /* --- PERBAIKAN RESPONSIVE MOBILE (FOCUS AREA) --- */
         @media screen and (max-width: 650px) {
-            .container { height: calc(100vh - 40px); }
-            .form-box { bottom: 0; width: 100%; height: 70%; background: #1e293b; }
-            .container.active .form-box { right: 0; bottom: 30%; }
-            .toggle-box::before { left: 0; top: -270%; width: 100%; height: 300%; border-radius: 20vw; }
-            .container.active .toggle-box::before { left: 0; top: 70%; }
-            .toggle-panel { width: 100%; height: 30%; }
+            .container { 
+                width: 95%;
+                height: 90vh; 
+                display: flex;
+                flex-direction: column;
+            }
+
+            .form-box {
+                bottom: 0;
+                width: 100%;
+                height: 75%; /* Memberi ruang lebih untuk input */
+                padding: 20px;
+                overflow-y: auto; /* Agar bisa di-scroll jika layar terlalu kecil */
+            }
+
+            .container.active .form-box {
+                right: 0;
+                bottom: 25%; /* Menggeser form register ke atas sedikit */
+            }
+
+            .toggle-box::before {
+                left: 0;
+                top: -270%;
+                width: 100%;
+                height: 300%;
+                border-radius: 20vw;
+            }
+
+            .container.active .toggle-box::before {
+                left: 0;
+                top: 75%;
+            }
+
+            .toggle-panel {
+                width: 100%;
+                height: 25%; /* Panel biru lebih kecil di mobile */
+            }
+
             .toggle-panel.toggle-left { top: 0; }
-            .toggle-panel.toggle-right { right: 0; bottom: -30%; }
+            .toggle-panel.toggle-right { right: 0; bottom: -25%; }
             .container.active .toggle-panel.toggle-right { bottom: 0; }
+
+            .container.active .toggle-panel.toggle-left { top: -25%; }
+            
+            /* Menyesuaikan ukuran teks agar muat */
+            h1 { font-size: 28px !important; }
+            .input-box { margin: 15px 0; }
         }
     </style>
 </head>
@@ -211,7 +227,7 @@
 
         <div class="form-box register">
             <form action="#">
-                <h1>Registration</h1>
+                <h1>Register</h1>
                 <div class="input-box">
                     <input type="text" placeholder="Username" required>
                     <i class='bx bxs-user'></i>
@@ -238,12 +254,12 @@
             <div class="toggle-panel toggle-left">
                 <h1>Hello, Welcome!</h1>
                 <p>Don't have an account?</p>
-                <button class="btn" id="register">Register</button>
+                <button class="btn" style="width: 140px; background: transparent; border: 2px solid #fff;" id="register">Register</button>
             </div>
             <div class="toggle-panel toggle-right">
                 <h1>Welcome Back!</h1>
                 <p>Already have an account?</p>
-                <button class="btn" id="login">Login</button>
+                <button class="btn" style="width: 140px; background: transparent; border: 2px solid #fff;" id="login">Login</button>
             </div>
         </div>
     </div>
@@ -253,23 +269,18 @@
         const registerBtn = document.getElementById('register');
         const loginBtn = document.getElementById('login');
 
-        // Toggle Form
         registerBtn.addEventListener('click', () => container.classList.add('active'));
         loginBtn.addEventListener('click', () => container.classList.remove('active'));
 
-        // Fitur Show/Hide Password
-        const togglePasswordIcons = document.querySelectorAll('.toggle-pass');
-        
-        togglePasswordIcons.forEach(icon => {
+        // Show/Hide Password
+        document.querySelectorAll('.toggle-pass').forEach(icon => {
             icon.addEventListener('click', function() {
-                // Cari input password yang berada di box yang sama dengan ikon yang diklik
-                const passwordInput = this.parentElement.querySelector('.password-input');
-                
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
+                const input = this.parentElement.querySelector('.password-input');
+                if (input.type === 'password') {
+                    input.type = 'text';
                     this.classList.replace('bx-hide', 'bx-show');
                 } else {
-                    passwordInput.type = 'password';
+                    input.type = 'password';
                     this.classList.replace('bx-show', 'bx-hide');
                 }
             });
