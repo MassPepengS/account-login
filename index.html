@@ -161,19 +161,20 @@
         /* --- PERBAIKAN KHUSUS MOBILE --- */
         @media screen and (max-width: 650px) {
             .container { 
-                height: 700px; /* Ditambah agar tidak sesak di mobile */
+                height: 750px; /* Ditambah lagi agar muat untuk form Register yang lebih panjang */
                 width: 95%;
+                display: flex;
+                flex-direction: column;
             }
 
             .form-box { 
                 bottom: 0; 
                 width: 100%; 
-                height: 70%; 
-                right: 0 !important; /* Paksa tetap di tengah secara horizontal */
-                transition: 0.6s ease-in-out;
+                height: 75%; /* Memberikan porsi lebih besar untuk form area */
+                right: 0 !important;
+                padding: 30px;
             }
 
-            /* Saat Register Aktif (Mobile) */
             .container.active .form-box.login {
                 transform: translateY(100%);
                 visibility: hidden;
@@ -185,10 +186,10 @@
                 bottom: 0;
             }
 
-            .container.active .form-box {
-                right: 0 !important;
-                bottom: 0 !important;
-            }
+            /* Penyesuaian h1 dan margin di mobile agar lebih compact */
+            h1 { font-size: 28px; margin-bottom: 5px; }
+            .input-box { margin: 15px 0; }
+            p { margin: 10px 0; }
 
             .toggle-box::before { 
                 left: 0; 
@@ -200,12 +201,12 @@
 
             .container.active .toggle-box::before { 
                 left: 0; 
-                top: 70%; 
+                top: 75%; /* Disesuaikan dengan tinggi form-box */
             }
 
             .toggle-panel { 
                 width: 100%; 
-                height: 30%; 
+                height: 25%; /* Bagian biru dibuat sedikit lebih kecil di mobile agar form tidak tertutup */
             }
 
             .toggle-panel.toggle-left { 
@@ -213,10 +214,9 @@
                 left: 0;
             }
 
-            /* Panel Biru di Bawah saat Register Aktif */
             .toggle-panel.toggle-right { 
                 right: 0; 
-                bottom: -30%; 
+                bottom: -25%; 
             }
 
             .container.active .toggle-panel.toggle-right { 
@@ -224,10 +224,8 @@
             }
             
             .container.active .toggle-panel.toggle-left {
-                top: -30%;
+                top: -25%;
             }
-
-            h1 { font-size: 28px; }
         }
     </style>
 </head>
@@ -250,7 +248,7 @@
                 <div class="social-icons">
                     <a href="#"><i class='bx bxl-google'></i></a>
                     <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-discord'></i></a>
+                    <a href="#"><i class='bx bxl-github'></i></a>
                 </div>
             </form>
         </div>
@@ -275,7 +273,7 @@
                 <div class="social-icons">
                     <a href="#"><i class='bx bxl-google'></i></a>
                     <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-discord'></i></a>
+                    <a href="#"><i class='bx bxl-github'></i></a>
                 </div>
             </form>
         </div>
