@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Modern Login/Signup</title>
+    <title>Fixed Mobile Navigation</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -59,11 +59,7 @@
         form { width: 100%; }
         h1 { font-size: 36px; margin-bottom: 10px; }
 
-        .input-box {
-            position: relative;
-            margin: 20px 0;
-        }
-
+        .input-box { position: relative; margin: 20px 0; }
         .input-box input {
             width: 100%;
             padding: 13px 50px 13px 20px;
@@ -76,11 +72,6 @@
             transition: 0.3s;
         }
 
-        .input-box input:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
-        }
-
         .input-box i {
             position: absolute;
             right: 20px;
@@ -88,7 +79,6 @@
             transform: translateY(-50%);
             font-size: 20px;
             color: #fff;
-            cursor: pointer;
         }
 
         .btn-submit {
@@ -108,16 +98,14 @@
         .social-text { font-size: 14px; color: #cbd5e1; margin-bottom: 15px; display: block; }
         .social-icons { display: flex; justify-content: center; gap: 15px; }
         .social-icons a {
-            display: inline-flex;
             padding: 10px;
             border: 2px solid #334155;
             border-radius: 10px;
             font-size: 20px;
             color: #fff;
-            transition: 0.3s;
         }
 
-        /* Toggle Animation */
+        /* Toggle Animation Desktop */
         .toggle-box { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
         .toggle-box::before {
             content: "";
@@ -144,6 +132,7 @@
             z-index: 2;
             transition: 0.6s ease-in-out;
             padding: 0 30px;
+            text-align: center;
         }
 
         .toggle-left { left: 0; transition-delay: 1.2s; }
@@ -163,42 +152,41 @@
             margin-top: 20px;
         }
 
-        /* --- MOBILE RESPONSIVE FIX --- */
+        /* --- MOBILE REPAIR --- */
         @media screen and (max-width: 650px) {
             .container {
                 width: 95%;
-                height: 700px; /* Ukuran pas untuk mobile */
+                height: 700px; /* Menambah tinggi sedikit agar tidak sesak */
             }
 
             .form-box {
                 width: 100%;
-                height: 75%;
+                height: 70%;
                 bottom: 0;
                 right: 0 !important;
-                padding: 20px;
+                transition: 0.6s ease-in-out;
             }
 
-            /* Logika perpindahan Form Login/Register */
-            .form-box.login {
-                visibility: visible;
+            .container .form-box.login {
                 transform: translateY(0);
+                visibility: visible;
             }
             .container.active .form-box.login {
-                visibility: hidden;
                 transform: translateY(100%);
+                visibility: hidden;
             }
 
-            .form-box.register {
-                visibility: hidden;
+            .container .form-box.register {
                 transform: translateY(-100%);
+                visibility: hidden;
             }
             .container.active .form-box.register {
-                visibility: visible;
                 transform: translateY(0);
+                visibility: visible;
                 z-index: 5;
             }
 
-            /* Panel Biru Bergerak */
+            /* Toggle Box Mobile Shape */
             .toggle-box::before {
                 left: 0;
                 top: -270%;
@@ -207,33 +195,39 @@
                 border-radius: 0 0 50% 50%;
             }
             .container.active .toggle-box::before {
-                top: 75%;
+                top: 70%;
+                border-radius: 50% 50% 0 0;
             }
 
             .toggle-panel {
                 width: 100%;
-                height: 25%;
+                height: 30%;
+                padding: 10px;
             }
 
-            /* Panel Login -> muncul di Atas saat form Login aktif */
-            .toggle-left {
+            /* Tombol Register (Warna Biru di ATAS saat Login) */
+            .toggle-panel.toggle-left {
                 top: 0;
                 left: 0;
+                transition-delay: 0.6s;
             }
-            .container.active .toggle-left {
-                top: -25%; /* geser keluar saat ke mode register */
+            .container.active .toggle-panel.toggle-left {
+                top: -30%; /* Keluar layar saat register aktif */
             }
 
-            /* Panel Register -> muncul di Bawah saat form Register aktif */
-            .toggle-right {
-                bottom: -25%; /* sembunyi di bawah */
+            /* Tombol Login (Warna Biru di BAWAH saat Register) */
+            .toggle-panel.toggle-right {
+                bottom: -30%; /* Tersembunyi di bawah saat login aktif */
                 right: 0;
+                transition-delay: 0.6s;
             }
-            .container.active .toggle-right {
-                bottom: 0; /* muncul ke atas */
+            .container.active .toggle-panel.toggle-right {
+                bottom: 0; /* Muncul di bawah saat register aktif */
+                transition-delay: 1.2s;
             }
 
-            h1 { font-size: 28px; }
+            h1 { font-size: 26px; }
+            .btn-toggle { margin-top: 10px; height: 40px; }
         }
     </style>
 </head>
