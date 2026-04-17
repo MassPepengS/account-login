@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Modern Login/Signup - Professional Mobile Version</title>
+    <title>Fixed Modern Login/Signup</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -37,7 +37,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Form Design */
         .form-box {
             position: absolute;
             right: 0;
@@ -89,6 +88,7 @@
             transform: translateY(-50%);
             font-size: 20px;
             color: #fff;
+            cursor: pointer;
         }
 
         .btn-submit {
@@ -103,11 +103,6 @@
             font-weight: 600;
             transition: 0.3s;
             margin: 10px 0 20px;
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
         }
 
         .social-text { font-size: 14px; color: #cbd5e1; margin-bottom: 15px; display: block; }
@@ -168,80 +163,74 @@
             margin-top: 20px;
         }
 
-        /* ==========================================================
-           --- FIX AREA: MOBILE RESPONSIVE (Layar < 650px) ---
-        ========================================================== */
+        /* --- MOBILE RESPONSIVE FIX --- */
         @media screen and (max-width: 650px) {
             .container {
                 width: 95%;
-                height: 650px; /* Ukuran tetap agar tidak meluap */
+                height: 700px; /* Ukuran pas untuk mobile */
             }
 
             .form-box {
                 width: 100%;
-                height: 70%;
+                height: 75%;
                 bottom: 0;
-                right: 0 !important; /* Hapus geseran samping di mobile */
-                padding: 30px;
-                transition: 0.6s ease-in-out;
+                right: 0 !important;
+                padding: 20px;
             }
 
-            /* Saat Login Aktif */
-            .container .form-box.login {
-                transform: translateY(0);
+            /* Logika perpindahan Form Login/Register */
+            .form-box.login {
                 visibility: visible;
+                transform: translateY(0);
             }
             .container.active .form-box.login {
-                transform: translateY(100%); /* Sembunyikan ke bawah */
                 visibility: hidden;
+                transform: translateY(100%);
             }
 
-            /* Saat Register Aktif */
-            .container .form-box.register {
-                transform: translateY(-100%); /* Awalnya di atas (sembunyi) */
+            .form-box.register {
                 visibility: hidden;
+                transform: translateY(-100%);
             }
             .container.active .form-box.register {
-                transform: translateY(0); /* Muncul ke tengah */
                 visibility: visible;
+                transform: translateY(0);
                 z-index: 5;
             }
 
-            /* Toggle Box Mobile */
+            /* Panel Biru Bergerak */
             .toggle-box::before {
                 left: 0;
                 top: -270%;
                 width: 100%;
                 height: 300%;
                 border-radius: 0 0 50% 50%;
-                transition: 1.2s ease-in-out;
             }
             .container.active .toggle-box::before {
-                left: 0;
-                top: 70%;
+                top: 75%;
             }
 
             .toggle-panel {
                 width: 100%;
-                height: 30%;
+                height: 25%;
             }
 
-            /* Panel Biru di Atas */
-            .toggle-panel.toggle-left {
+            /* Panel Login -> muncul di Atas saat form Login aktif */
+            .toggle-left {
                 top: 0;
                 left: 0;
             }
-            .container.active .toggle-panel.toggle-left {
-                top: -30%;
+            .container.active .toggle-left {
+                top: -25%; /* geser keluar saat ke mode register */
             }
 
-            /* Panel Biru di Bawah */
-            .toggle-panel.toggle-right {
-                bottom: -30%;
+            /* Panel Register -> muncul di Bawah saat form Register aktif */
+            .toggle-right {
+                bottom: -25%; /* sembunyi di bawah */
                 right: 0;
             }
-            .container.active .toggle-panel.toggle-right {
-                bottom: 0;
+            .container.active .toggle-right {
+                bottom: 0; /* muncul ke atas */
             }
 
             h1 { font-size: 28px; }
