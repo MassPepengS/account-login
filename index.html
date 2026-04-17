@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Modern Login/Signup - Better Spacing</title>
+    <title>Fixed Modern Login/Signup - Professional Mobile Version</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
         * {
             margin: 0;
@@ -37,6 +37,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Form Design */
         .form-box {
             position: absolute;
             right: 0;
@@ -56,11 +57,12 @@
         .form-box.register { visibility: hidden; }
         .container.active .form-box.register { visibility: visible; }
 
+        form { width: 100%; }
         h1 { font-size: 36px; margin-bottom: 10px; }
 
         .input-box {
             position: relative;
-            margin: 20px 0; /* Jarak antar input */
+            margin: 20px 0;
         }
 
         .input-box input {
@@ -89,7 +91,6 @@
             color: #fff;
         }
 
-        /* --- PERBAIKAN JARAK TOMBOL LOGIN --- */
         .btn-submit {
             width: 100%;
             height: 48px;
@@ -101,8 +102,7 @@
             color: #fff;
             font-weight: 600;
             transition: 0.3s;
-            margin-top: 10px;
-            margin-bottom: 25px; /* Jarak ke teks social media di bawahnya */
+            margin: 10px 0 20px;
         }
 
         .btn-submit:hover {
@@ -110,38 +110,20 @@
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
         }
 
-        /* --- PERBAIKAN JARAK TEKS SOCIAL MEDIA --- */
-        .social-text {
-            font-size: 14px;
-            color: #cbd5e1;
-            margin-bottom: 20px; /* Memberi ruang sebelum ikon muncul */
-            display: block;
-        }
-
-        /* --- PERBAIKAN JARAK IKON SOCIAL MEDIA --- */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px; /* Jarak antar kotak ikon */
-        }
-
+        .social-text { font-size: 14px; color: #cbd5e1; margin-bottom: 15px; display: block; }
+        .social-icons { display: flex; justify-content: center; gap: 15px; }
         .social-icons a {
             display: inline-flex;
-            padding: 12px;
+            padding: 10px;
             border: 2px solid #334155;
             border-radius: 10px;
-            font-size: 22px;
+            font-size: 20px;
             color: #fff;
             transition: 0.3s;
         }
 
-        .social-icons a:hover {
-            transform: scale(1.1);
-            border-color: #6366f1;
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        /* Toggle Animation & Panel Logic */
+        /* Toggle Animation */
+        .toggle-box { position: absolute; width: 100%; height: 100%; top: 0; left: 0; }
         .toggle-box::before {
             content: "";
             position: absolute;
@@ -174,10 +156,8 @@
         .toggle-right { right: -50%; transition-delay: 0.6s; }
         .container.active .toggle-right { right: 0; transition-delay: 1.2s; }
 
-        .toggle-panel p { margin: 15px 0 25px; }
-
         .btn-toggle {
-            width: 150px;
+            width: 140px;
             height: 45px;
             background: transparent;
             border: 2px solid #fff;
@@ -185,20 +165,86 @@
             color: #fff;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            margin-top: 20px;
         }
 
-        .btn-toggle:hover { background: #fff; color: #4f46e5; }
-
+        /* ==========================================================
+           --- FIX AREA: MOBILE RESPONSIVE (Layar < 650px) ---
+        ========================================================== */
         @media screen and (max-width: 650px) {
-            .container { width: 95%; height: 90vh; }
-            .form-box { bottom: 0; width: 100%; height: 75%; padding: 30px 20px; }
-            .toggle-panel { width: 100%; height: 25%; }
-            .toggle-box::before { left: 0; top: -270%; width: 100%; height: 300%; border-radius: 20vw; }
-            .container.active .toggle-box::before { top: 75%; }
-            .toggle-panel.toggle-left { top: 0; }
-            .toggle-panel.toggle-right { bottom: -25%; right: 0; }
-            .container.active .toggle-panel.toggle-right { bottom: 0; }
+            .container {
+                width: 95%;
+                height: 650px; /* Ukuran tetap agar tidak meluap */
+            }
+
+            .form-box {
+                width: 100%;
+                height: 70%;
+                bottom: 0;
+                right: 0 !important; /* Hapus geseran samping di mobile */
+                padding: 30px;
+                transition: 0.6s ease-in-out;
+            }
+
+            /* Saat Login Aktif */
+            .container .form-box.login {
+                transform: translateY(0);
+                visibility: visible;
+            }
+            .container.active .form-box.login {
+                transform: translateY(100%); /* Sembunyikan ke bawah */
+                visibility: hidden;
+            }
+
+            /* Saat Register Aktif */
+            .container .form-box.register {
+                transform: translateY(-100%); /* Awalnya di atas (sembunyi) */
+                visibility: hidden;
+            }
+            .container.active .form-box.register {
+                transform: translateY(0); /* Muncul ke tengah */
+                visibility: visible;
+                z-index: 5;
+            }
+
+            /* Toggle Box Mobile */
+            .toggle-box::before {
+                left: 0;
+                top: -270%;
+                width: 100%;
+                height: 300%;
+                border-radius: 0 0 50% 50%;
+                transition: 1.2s ease-in-out;
+            }
+            .container.active .toggle-box::before {
+                left: 0;
+                top: 70%;
+            }
+
+            .toggle-panel {
+                width: 100%;
+                height: 30%;
+            }
+
+            /* Panel Biru di Atas */
+            .toggle-panel.toggle-left {
+                top: 0;
+                left: 0;
+            }
+            .container.active .toggle-panel.toggle-left {
+                top: -30%;
+            }
+
+            /* Panel Biru di Bawah */
+            .toggle-panel.toggle-right {
+                bottom: -30%;
+                right: 0;
+            }
+            .container.active .toggle-panel.toggle-right {
+                bottom: 0;
+            }
+
+            h1 { font-size: 28px; }
         }
     </style>
 </head>
@@ -216,11 +262,8 @@
                     <input type="password" placeholder="Password" class="password-input" required>
                     <i class='bx bx-hide toggle-pass'></i>
                 </div>
-                
                 <button type="submit" class="btn-submit">Login</button>
-                
                 <span class="social-text">or login with social platforms</span>
-                
                 <div class="social-icons">
                     <a href="#"><i class='bx bxl-google'></i></a>
                     <a href="#"><i class='bx bxl-facebook'></i></a>
@@ -244,11 +287,8 @@
                     <input type="password" placeholder="Password" class="password-input" required>
                     <i class='bx bx-hide toggle-pass'></i>
                 </div>
-                
                 <button type="submit" class="btn-submit">Register</button>
-                
                 <span class="social-text">or register with social platforms</span>
-                
                 <div class="social-icons">
                     <a href="#"><i class='bx bxl-google'></i></a>
                     <a href="#"><i class='bx bxl-facebook'></i></a>
@@ -279,7 +319,6 @@
         registerBtn.addEventListener('click', () => container.classList.add('active'));
         loginBtn.addEventListener('click', () => container.classList.remove('active'));
 
-        // Toggle Password Visibility
         document.querySelectorAll('.toggle-pass').forEach(icon => {
             icon.addEventListener('click', function() {
                 const input = this.parentElement.querySelector('.password-input');
