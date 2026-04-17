@@ -183,8 +183,14 @@
   
             .form-box.register {  
                 transform: translateY(100%);  
-            } 
-  
+            }
+            
+            .container.active .form-box.register {  
+                transform: translateY(0);  
+                visibility: visible;  
+                bottom: 0;  
+            }
+            
             h1 { font-size: 28px; margin-bottom: 5px; }  
             .input-box { margin: 12px 0; }  
             p { margin: 10px 0; }  
