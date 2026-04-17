@@ -38,6 +38,7 @@
             transition: height 0.5s ease;
         }
 
+        /* --- DESKTOP STYLES (NO CHANGES) --- */
         .form-box {
             position: absolute;
             right: 0;
@@ -52,7 +53,6 @@
             transition: 0.6s ease-in-out;
         }
 
-        /* Logic Visibility untuk mencegah penumpukan teks */
         .form-box.login { opacity: 1; visibility: visible; }
         .form-box.register { opacity: 0; visibility: hidden; }
 
@@ -69,7 +69,6 @@
             transition-delay: 0.2s;
         }
 
-        /* Form Elements */
         h1 { font-size: 32px; color: #fff; margin-bottom: 10px; }
         p { font-size: 14px; color: #cbd5e1; margin: 10px 0; }
 
@@ -111,18 +110,22 @@
 
         .btn:hover { transform: translateY(-2px); }
 
-        .social-icons a {
+        .social-icons-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-icons-box a {
             display: inline-flex;
             padding: 10px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             color: #fff;
-            margin: 0 5px;
             font-size: 20px;
         }
 
-        /* Toggle Panel */
         .toggle-box::before {
             content: "";
             position: absolute;
@@ -163,11 +166,11 @@
             box-shadow: none;
         }
 
-        /* --- MEDIA QUERY: PERBAIKAN MOBILE --- */
+        /* --- MEDIA QUERY: PERBAIKAN MOBILE (REGISTRATION PANEL) --- */
         @media screen and (max-width: 650px) {
             .container {
                 width: 100%;
-                height: 650px; /* Tinggi disesuaikan */
+                height: 700px; /* Tinggi dinaikkan sedikit untuk ruang */
                 display: flex;
                 flex-direction: column;
             }
@@ -176,120 +179,35 @@
                 width: 100%;
                 height: 70%;
                 bottom: 0;
-                right: 0 !important; /* Paksa tetap di tengah */
-                padding: 30px;
-            }
-
-            .container.active .form-box.login, 
-            .container.active .form-box.register {
                 right: 0 !important;
-                bottom: 0;
+                padding: 30px; /* Padding dasar diturunkan */
             }
 
-            .toggle-box::before {
-                left: 0;
-                top: -270%;
-                width: 100%;
-                height: 300%;
-                border-radius: 0 0 50% 50%;
+            /* --- PERBAIKAN KHUSUS PANEL REGISTER DI MOBILE --- */
+            .form-box.register {
+                padding: 15px 30px; /* Padding vertikal (atas-bawah) diperkecil */
+                justify-content: flex-start; /* Konten mulai dari atas */
             }
 
-            .container.active .toggle-box::before {
-                top: 70%;
-                left: 0;
+            .form-box.register h1 {
+                font-size: 26px; /* Ukuran font judul diperkecil */
+                margin-top: 10px; /* Beri jarak dari atas panel */
+                margin-bottom: 15px; /* Jarak ke elemen di bawahnya diperkecil */
             }
 
-            .toggle-panel {
-                width: 100%;
-                height: 30%;
+            .form-box.register .input-box {
+                margin: 10px 0; /* Jarak antar input box diperkecil */
             }
 
-            .toggle-left { top: 0; left: 0; }
-            .container.active .toggle-left { top: -30%; left: 0; }
+            .form-box.register .input-box input {
+                padding: 10px 45px 10px 15px; /* Padding vertikal input diperkecil */
+                font-size: 14px; /* Ukuran font input diperkecil */
+            }
 
-            .toggle-right { bottom: -30%; right: 0; }
-            .container.active .toggle-right { bottom: 0; right: 0; }
-            
-            h1 { font-size: 24px; }
-            .input-box { margin: 15px 0; }
-        }
-    </style>
-</head>
-<body>
+            .form-box.register button.btn {
+                margin-top: 10px; /* Beri jarak sedikit di atas tombol */
+                height: 42px; /* Tinggi tombol diperkecil */
+            }
 
-    <div class="container" id="container">
-        <div class="form-box login">
-            <form action="#">
-                <h1>Login</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <button type="submit" class="btn">Login</button>
-                <p>or login with social</p>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-google'></i></a>
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-github'></i></a>
-                </div>
-            </form>
-        </div>
-
-        <div class="form-box register">
-            <form action="#">
-                <h1>Register</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="email" placeholder="Email" required>
-                    <i class='bx bxs-envelope'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <button type="submit" class="btn">Register</button>
-                <p>or register with social</p>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-google'></i></a>
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-github'></i></a>
-                </div>
-            </form>
-        </div>
-
-        <div class="toggle-box">
-            <div class="toggle-panel toggle-left">
-                <h1>Hello, Friend!</h1>
-                <p>Don't have an account?</p>
-                <button class="btn" id="to-register">Register</button>
-            </div>
-            <div class="toggle-panel toggle-right">
-                <h1>Welcome Back!</h1>
-                <p>Already have an account?</p>
-                <button class="btn" id="to-login">Login</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const container = document.getElementById('container');
-        const toRegister = document.getElementById('to-register');
-        const toLogin = document.getElementById('to-login');
-
-        toRegister.addEventListener('click', () => {
-            container.classList.add('active');
-        });
-
-        toLogin.addEventListener('click', () => {
-            container.classList.remove('active');
-        });
-    </script>
-</body>
-</html>
+            .form-box.register p {
+                font-size: 12px; /* Ukuran font teks 'or register with' diperkec
