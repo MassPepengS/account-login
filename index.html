@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login Form - Fixed Mobile Register</title>
+    <title>Modern Login Form - Fixed Mobile</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -23,6 +23,7 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            padding: 20px;
         }
 
         .container {
@@ -30,7 +31,6 @@
             width: 850px;
             height: 550px;
             background: #1e293b; 
-            margin: 20px;
             border-radius: 30px;
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
             overflow: hidden;
@@ -92,7 +92,7 @@
 
         .input-box i.toggle-pass {
             cursor: pointer;
-            transition: 0.2s;
+            z-index: 10;
         }
 
         .btn {
@@ -158,26 +158,28 @@
             margin-top: 20px;
         }
 
-        /* --- PERBAIKAN KHUSUS MOBILE --- */
+        /* --- PERBAIKAN MOBILE (TIDAK BERTUMPUK) --- */
         @media screen and (max-width: 650px) {
-            .container { 
-                height: 800px; /* Tinggi ditambah agar muat semua elemen */
-                width: 90%;
+            .container {
+                width: 100%;
+                height: 100vh; /* Mengikuti tinggi layar agar pas */
+                max-height: 850px;
                 display: flex;
                 flex-direction: column;
+                border-radius: 20px;
             }
 
-            .form-box { 
-                bottom: 0; 
-                width: 100%; 
-                height: 72%; /* Porsi area input */
+            .form-box {
+                width: 100%;
+                height: 75%; /* Area form lebih besar */
+                position: absolute;
+                top: 0;
                 right: 0 !important;
-                padding: 25px 30px;
-                z-index: 1;
+                padding: 30px;
             }
 
             .container.active .form-box.login {
-                transform: translateY(100%);
+                transform: translateY(-100%);
                 visibility: hidden;
             }
 
@@ -188,59 +190,56 @@
             .container.active .form-box.register {
                 transform: translateY(0);
                 visibility: visible;
-                bottom: 0;
+                top: 0;
             }
 
-            h1 { font-size: 28px; margin-bottom: 5px; }
-            .input-box { margin: 12px 0; }
-            p { margin: 10px 0; }
-
-            .toggle-box::before { 
-                left: 0; 
-                top: -270%; 
-                width: 100%; 
-                height: 300%; 
-                border-radius: 20vw; 
-                z-index: 2;
+            /* Efek transisi warna biru (Toggle Box) di mobile */
+            .toggle-box::before {
+                left: 0;
+                top: -300%;
+                width: 100%;
+                height: 400%;
+                border-radius: 0;
+                transition: 1.2s ease-in-out;
             }
 
-            .container.active .toggle-box::before { 
-                left: 0; 
-                top: 72%; /* Sesuai dengan pembagian tinggi form-box */
+            .container.active .toggle-box::before {
+                top: 70%; /* Panel biru pindah ke bawah */
+                left: 0;
             }
 
-            .toggle-panel { 
-                width: 100%; 
-                height: 28%; /* Area panel biru bawah ditingkatkan sedikit */
+            .toggle-panel {
+                width: 100%;
+                height: 25%; /* Panel biru di bagian bawah */
+                position: absolute;
+                left: 0 !important;
                 z-index: 5;
             }
 
-            .toggle-panel.toggle-left { 
-                top: 0; 
-                left: 0;
-                justify-content: center;
+            /* Login Mode: Panel Register di atas (tetap tersembunyi/pindah) */
+            .toggle-left {
+                top: 75%; 
+                bottom: 0;
             }
 
-            .toggle-panel.toggle-right { 
-                right: 0; 
-                bottom: -30%; 
-            }
-
-            /* Panel Register Aktif (Kembali ke Login) */
-            .container.active .toggle-panel.toggle-right { 
-                bottom: 0; 
-                padding-bottom: 25px; /* Memberi jarak agar tombol login tidak menabrak tombol register di atasnya */
-                justify-content: center;
-            }
-            
-            .container.active .toggle-panel.toggle-left {
+            .container.active .toggle-left {
                 top: -30%;
             }
 
-            /* Penyesuaian teks agar lebih rapi di layar kecil */
-            .toggle-panel h1 { font-size: 24px; }
-            .toggle-panel p { font-size: 13px; }
-            .toggle-panel .btn { margin-top: 10px; height: 40px; }
+            /* Register Mode: Panel Login di bawah */
+            .toggle-right {
+                bottom: -30%;
+            }
+
+            .container.active .toggle-right {
+                bottom: 0;
+                top: auto;
+                background: transparent;
+            }
+
+            h1 { font-size: 24px; }
+            .input-box { margin: 15px 0; }
+            .social-icons a { padding: 8px; font-size: 20px; }
         }
     </style>
 </head>
@@ -312,10 +311,15 @@
         const registerBtn = document.getElementById('register');
         const loginBtn = document.getElementById('login');
 
-        registerBtn.addEventListener('click', () => container.classList.add('active'));
-        loginBtn.addEventListener('click', () => container.classList.remove('active'));
+        registerBtn.addEventListener('click', () => {
+            container.classList.add('active');
+        });
 
-        // Fitur Toggle Password (Tetap dipertahankan)
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+        });
+
+        // Fitur Toggle Password
         document.querySelectorAll('.toggle-pass').forEach(icon => {
             icon.addEventListener('click', function() {
                 const passwordInput = this.parentElement.querySelector('.password-input');
