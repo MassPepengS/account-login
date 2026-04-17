@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login Form - Fixed Mobile</title>
+    <title>Modern Login Form - Fixed Final</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -158,56 +158,54 @@
             margin-top: 20px;
         }
 
-        /* --- PERBAIKAN FINAL MOBILE --- */
+        /* --- PERBAIKAN TOTAL UNTUK MOBILE --- */
         @media screen and (max-width: 650px) {
             .container {
                 width: 100%;
-                height: 100vh;
-                max-height: 850px;
+                height: 90vh;
                 display: flex;
                 flex-direction: column;
-                border-radius: 20px;
             }
 
             .form-box {
                 width: 100%;
-                height: 75%;
-                position: absolute;
-                left: 0; /* Pastikan login berada di tengah horizontal */
+                height: 70%;
+                right: 0 !important;
+                left: 0;
                 top: 0;
-                padding: 30px;
                 transition: 0.6s ease-in-out;
+                z-index: 10;
             }
 
-            /* Perbaikan: Login harus terlihat saat tidak aktif */
+            /* Saat Login Aktif */
             .form-box.login {
-                visibility: visible;
                 transform: translateY(0);
+                visibility: visible;
             }
-
             .container.active .form-box.login {
-                transform: translateY(-100%);
+                transform: translateY(-120%); /* Geser jauh ke atas */
                 visibility: hidden;
             }
 
+            /* Saat Register Aktif */
             .form-box.register {
-                transform: translateY(100%);
+                transform: translateY(120%); /* Sembunyikan jauh ke bawah */
                 visibility: hidden;
             }
-
             .container.active .form-box.register {
                 transform: translateY(0);
                 visibility: visible;
             }
 
+            /* Logika Background Biru (Toggle) */
             .toggle-box::before {
                 left: 0;
                 top: -300%;
                 width: 100%;
                 height: 400%;
                 border-radius: 0;
+                transition: 1s ease-in-out;
             }
-
             .container.active .toggle-box::before {
                 top: 70%;
             }
@@ -215,34 +213,32 @@
             .toggle-panel {
                 width: 100%;
                 height: 30%;
-                position: absolute;
                 left: 0 !important;
-                z-index: 5;
-                transition: 0.6s ease-in-out;
+                top: auto;
+                bottom: 0;
+                z-index: 20;
             }
 
-            /* Posisikan panel biru tepat di bawah form */
+            /* Tombol Register di bawah form Login */
             .toggle-left {
-                top: 70%; 
-                bottom: 0;
+                transform: translateY(0);
+                transition-delay: 0.2s;
             }
-
             .container.active .toggle-left {
-                top: -40%; /* Lempar ke atas saat register aktif */
+                transform: translateY(150%); /* Buang ke bawah */
             }
 
+            /* Tombol Login di bawah form Register */
             .toggle-right {
-                top: 100%; /* Sembunyikan di bawah layar saat login aktif */
+                transform: translateY(150%);
             }
-
             .container.active .toggle-right {
-                top: 70%; /* Muncul di bawah saat register aktif */
-                bottom: 0;
+                transform: translateY(0);
+                transition-delay: 0.2s;
             }
 
             h1 { font-size: 28px; }
-            .input-box { margin: 15px 0; }
-            .social-icons a { padding: 8px; font-size: 22px; }
+            .input-box { margin: 12px 0; }
         }
     </style>
 </head>
@@ -322,6 +318,7 @@
             container.classList.remove('active');
         });
 
+        // Fitur Toggle Password Tetap Dipertahankan
         document.querySelectorAll('.toggle-pass').forEach(icon => {
             icon.addEventListener('click', function() {
                 const passwordInput = this.parentElement.querySelector('.password-input');
