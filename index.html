@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jungle Login & Register</title>
+    <title>Jungle Adventure | Login & Register</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
@@ -20,8 +20,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            /* Latar Belakang Gambar Dino/Hutan */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.imgur.com/6ah360H.jpeg');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.imgur.com/6ah360H.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -38,10 +37,8 @@
             border-radius: 30px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            display: flex;
         }
 
-        /* Form Styling */
         .form-box {
             position: absolute;
             right: 0;
@@ -76,7 +73,8 @@
             left: 0;
         }
 
-        h1 { font-size: 32px; margin-bottom: 10px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        form { width: 100%; }
+        h1 { font-size: 32px; text-align: center; margin-bottom: 20px; }
 
         .input-box {
             position: relative;
@@ -84,24 +82,20 @@
             margin: 15px 0;
         }
 
-        /* Style Input & Placeholder */
         .input-box input {
             width: 100%;
             padding: 13px 45px 13px 20px;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
             outline: none;
             color: #fff;
             font-size: 16px;
-            transition: all 0.3s ease;
+            transition: 0.3s;
         }
 
-        /* Mencerahkan tulisan di dalam box agar terbaca */
-        .input-box input::placeholder {
-            color: #eeeeee; /* Putih terang */
-            opacity: 0.9;
-        }
+        /* High Visibility Placeholder */
+        .input-box input::placeholder { color: #f0f0f0; }
 
         .input-box i {
             position: absolute;
@@ -109,42 +103,35 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 20px;
-            transition: 0.3s;
         }
 
-        /* Efek Glow HIJAU saat diklik */
+        /* Green Glow Effect */
         .input-box input:focus {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: #4CAF50; /* Hijau */
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); /* Glow Hijau */
+            border-color: #4CAF50;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.6);
+            background: rgba(255, 255, 255, 0.3);
         }
 
-        .input-box input:focus + i {
-            color: #4CAF50;
-        }
-
-        /* Tombol Modern */
         .btn {
             width: 100%;
             height: 48px;
-            background: #4CAF50; /* Hijau agar senada */
+            background: #4CAF50;
             border: none;
             border-radius: 12px;
             color: #fff;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s ease;
+            transition: 0.3s;
         }
 
         .btn:hover {
-            background: #45a049;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            background: #45a049;
         }
 
-        /* Panel Samping (Switch) */
+        /* Toggle Panels */
         .toggle-box {
             position: absolute;
             width: 100%;
@@ -157,7 +144,7 @@
             left: -250%;
             width: 300%;
             height: 100%;
-            background: #4CAF50; /* Hijau */
+            background: #4CAF50;
             border-radius: 150px;
             z-index: 2;
             transition: 1.2s ease-in-out;
@@ -176,8 +163,8 @@
             color: #fff;
             z-index: 2;
             transition: 0.6s ease-in-out;
+            padding: 0 30px;
             text-align: center;
-            padding: 0 20px;
         }
 
         .toggle-left { left: 0; }
@@ -187,43 +174,43 @@
         .container.active .toggle-right { right: 0; }
 
         .toggle-panel .btn {
-            width: 150px;
+            width: 160px;
             background: transparent;
             border: 2px solid #fff;
             margin-top: 20px;
         }
 
-        .toggle-panel .btn:hover {
-            background: #fff;
-            color: #4CAF50;
-        }
-
-        /* Responsif Mobile */
+        /* MOBILE OPTIMIZATION */
         @media screen and (max-width: 650px) {
             .container {
                 width: 100%;
                 height: auto;
+                min-height: 600px;
+                display: flex;
                 flex-direction: column;
-                overflow: visible;
-                background: rgba(0, 0, 0, 0.4);
+                border-radius: 20px;
             }
 
             .form-box {
                 position: relative;
                 width: 100%;
                 height: auto;
-                padding: 40px 20px;
+                padding: 30px 20px;
+                right: auto;
                 transform: none !important;
                 visibility: visible !important;
                 opacity: 1 !important;
             }
 
-            .form-box.register, .container.active .form-box.login {
-                display: none;
-            }
+            /* Toggle Form Display */
+            .form-box.register, .container.active .form-box.login { display: none; }
+            .container.active .form-box.register { display: flex; }
 
-            .container.active .form-box.register {
-                display: flex;
+            .toggle-box {
+                position: relative;
+                width: 100%;
+                height: auto;
+                order: -1; /* Move toggle message to top */
             }
 
             .toggle-box::before { display: none; }
@@ -231,15 +218,19 @@
             .toggle-panel {
                 position: relative;
                 width: 100%;
-                height: 150px;
-                left: 0 !important;
-                right: 0 !important;
-                background: rgba(76, 175, 80, 0.8);
-                border-radius: 0 0 30px 30px;
+                height: auto;
+                padding: 30px 20px;
+                background: rgba(76, 175, 80, 0.9);
+                left: auto !important;
+                right: auto !important;
             }
 
+            /* Toggle Visibility in Mobile */
             .toggle-left, .container.active .toggle-right { display: none; }
             .container.active .toggle-left { display: flex; }
+            
+            h1 { font-size: 26px; }
+            .toggle-panel h2 { font-size: 22px; }
         }
     </style>
 </head>
@@ -263,7 +254,7 @@
 
         <div class="form-box register">
             <form action="#">
-                <h1>Register</h1>
+                <h1>Registration</h1>
                 <div class="input-box">
                     <input type="text" placeholder="Username" required>
                     <i class='bx bxs-user'></i>
@@ -283,13 +274,13 @@
         <div class="toggle-box">
             <div class="toggle-panel toggle-left">
                 <h2>Hello, Friend!</h2>
-                <p>Belum punya akun?</p>
-                <button class="btn" id="register">Daftar Sekarang</button>
+                <p>Don't have an account yet?</p>
+                <button class="btn" id="register">Register</button>
             </div>
             <div class="toggle-panel toggle-right">
                 <h2>Welcome Back!</h2>
-                <p>Sudah punya akun?</p>
-                <button class="btn" id="login">Masuk</button>
+                <p>Already have an account?</p>
+                <button class="btn" id="login">Login</button>
             </div>
         </div>
     </div>
@@ -299,13 +290,8 @@
         const registerBtn = document.getElementById('register');
         const loginBtn = document.getElementById('login');
 
-        registerBtn.onclick = () => {
-            container.classList.add('active');
-        };
-
-        loginBtn.onclick = () => {
-            container.classList.remove('active');
-        };
+        registerBtn.onclick = () => container.classList.add('active');
+        loginBtn.onclick = () => container.classList.remove('active');
     </script>
 </body>
 </html>
