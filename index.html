@@ -161,8 +161,8 @@
         /* --- PERBAIKAN KHUSUS MOBILE --- */
         @media screen and (max-width: 650px) {
             .container { 
-                height: 750px; /* Ditambah lagi agar muat untuk form Register yang lebih panjang */
-                width: 95%;
+                height: 800px; /* Tinggi ditambah agar muat semua elemen */
+                width: 90%;
                 display: flex;
                 flex-direction: column;
             }
@@ -170,14 +170,19 @@
             .form-box { 
                 bottom: 0; 
                 width: 100%; 
-                height: 75%; /* Memberikan porsi lebih besar untuk form area */
+                height: 72%; /* Porsi area input */
                 right: 0 !important;
-                padding: 30px;
+                padding: 25px 30px;
+                z-index: 1;
             }
 
             .container.active .form-box.login {
                 transform: translateY(100%);
                 visibility: hidden;
+            }
+
+            .form-box.register {
+                transform: translateY(100%);
             }
 
             .container.active .form-box.register {
@@ -186,9 +191,8 @@
                 bottom: 0;
             }
 
-            /* Penyesuaian h1 dan margin di mobile agar lebih compact */
             h1 { font-size: 28px; margin-bottom: 5px; }
-            .input-box { margin: 15px 0; }
+            .input-box { margin: 12px 0; }
             p { margin: 10px 0; }
 
             .toggle-box::before { 
@@ -197,35 +201,46 @@
                 width: 100%; 
                 height: 300%; 
                 border-radius: 20vw; 
+                z-index: 2;
             }
 
             .container.active .toggle-box::before { 
                 left: 0; 
-                top: 75%; /* Disesuaikan dengan tinggi form-box */
+                top: 72%; /* Sesuai dengan pembagian tinggi form-box */
             }
 
             .toggle-panel { 
                 width: 100%; 
-                height: 25%; /* Bagian biru dibuat sedikit lebih kecil di mobile agar form tidak tertutup */
+                height: 28%; /* Area panel biru bawah ditingkatkan sedikit */
+                z-index: 5;
             }
 
             .toggle-panel.toggle-left { 
                 top: 0; 
                 left: 0;
+                justify-content: center;
             }
 
             .toggle-panel.toggle-right { 
                 right: 0; 
-                bottom: -25%; 
+                bottom: -30%; 
             }
 
+            /* Panel Register Aktif (Kembali ke Login) */
             .container.active .toggle-panel.toggle-right { 
                 bottom: 0; 
+                padding-bottom: 25px; /* Memberi jarak agar tombol login tidak menabrak tombol register di atasnya */
+                justify-content: center;
             }
             
             .container.active .toggle-panel.toggle-left {
-                top: -25%;
+                top: -30%;
             }
+
+            /* Penyesuaian teks agar lebih rapi di layar kecil */
+            .toggle-panel h1 { font-size: 24px; }
+            .toggle-panel p { font-size: 13px; }
+            .toggle-panel .btn { margin-top: 10px; height: 40px; }
         }
     </style>
 </head>
@@ -300,6 +315,7 @@
         registerBtn.addEventListener('click', () => container.classList.add('active'));
         loginBtn.addEventListener('click', () => container.classList.remove('active'));
 
+        // Fitur Toggle Password (Tetap dipertahankan)
         document.querySelectorAll('.toggle-pass').forEach(icon => {
             icon.addEventListener('click', function() {
                 const passwordInput = this.parentElement.querySelector('.password-input');
