@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login/Signup Form - Dark Edition Fixed</title>
+    <title>Modern Login/Signup Form - Glassmorphism Edition</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -22,19 +22,23 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            /* Latar belakang dengan gradien agar efek kaca terlihat kontras */
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
         }
 
+        /* --- Container Utama (Efek Kaca) --- */
         .container {
             position: relative;
             width: 850px;
             height: 550px;
-            background: #1e293b; 
+            background: rgba(255, 255, 255, 0.05); /* Transparansi rendah */
+            backdrop-filter: blur(15px); /* Efek Blur */
+            -webkit-backdrop-filter: blur(15px);
             margin: 20px;
             border-radius: 30px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Garis tepi tipis */
         }
 
         .container h1 {
@@ -53,23 +57,23 @@
             width: 100%;
         }
 
+        /* --- Form Box Transparan --- */
         .form-box {
             position: absolute;
             right: 0;
             width: 50%;
             height: 100%;
-            background: #1e293b;
+            background: transparent; /* Harus transparan agar efek blur container terlihat */
             display: flex;
             align-items: center;
             color: #fff;
             text-align: center;
             padding: 40px;
             z-index: 1;
-            /* Perbaikan: Transisi opacity agar tidak menumpuk */
             transition: 0.6s ease-in-out;
         }
 
-        /* Logic Login: Hilang saat active */
+        /* Logic Login & Register */
         .form-box.login {
             opacity: 1;
             visibility: visible;
@@ -83,7 +87,6 @@
             z-index: 1;
         }
 
-        /* Logic Register: Muncul saat active */
         .form-box.register {
             opacity: 0;
             visibility: hidden;
@@ -95,10 +98,10 @@
             opacity: 1;
             visibility: visible;
             z-index: 2;
-            /* Delay sedikit agar sinkron dengan gerakan slide */
             transition-delay: 0.4s;
         }
 
+        /* --- Input Box dengan Efek Kaca Lebih Gelap --- */
         .input-box {
             position: relative;
             margin: 30px 0;
@@ -107,18 +110,23 @@
         .input-box input {
             width: 100%;
             padding: 13px 50px 13px 20px;
-            background: #334155;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             outline: none;
             font-size: 16px;
             color: #fff;
-            font-weight: 500;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(99, 102, 241, 0.5);
         }
 
         .input-box input::placeholder {
             color: #94a3b8;
-            font-weight: 400;
         }
 
         .input-box i {
@@ -143,8 +151,8 @@
             width: 100%;
             height: 48px;
             background: linear-gradient(90deg, #6366f1, #8b5cf6);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
             border: none;
             cursor: pointer;
             font-size: 16px;
@@ -154,7 +162,8 @@
         }
 
         .btn:hover {
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
         }
 
         .social-icons {
@@ -165,8 +174,9 @@
         .social-icons a {
             display: inline-flex;
             padding: 10px;
-            border: 2px solid #334155;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             font-size: 24px;
             color: #fff;
             margin: 0 8px;
@@ -174,9 +184,11 @@
         }
 
         .social-icons a:hover {
-            background: #334155;
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
         }
 
+        /* --- Overlay Gradien (Tetap Solid untuk Kontras) --- */
         .toggle-box {
             position: absolute;
             width: 100%;
@@ -242,16 +254,12 @@
 
         /* Mobile Responsive */
         @media screen and (max-width: 650px) {
-            .container { height: calc(100vh - 40px); }
-            .form-box { bottom: 0; width: 100%; height: 70%; background: #1e293b; }
+            .container { height: 90vh; }
+            .form-box { bottom: 0; width: 100%; height: 70%; background: transparent; }
             .container.active .form-box { right: 0; bottom: 0; }
             .toggle-box::before { left: 0; top: -270%; width: 100%; height: 300%; border-radius: 20vw; }
             .container.active .toggle-box::before { left: 0; top: 70%; }
-            .container.active .toggle-panel.toggle-left { left: 0; top: -30%; }
             .toggle-panel { width: 100%; height: 30%; }
-            .toggle-panel.toggle-left { top: 0; }
-            .toggle-panel.toggle-right { right: 0; bottom: -30%; }
-            .container.active .toggle-panel.toggle-right { bottom: 0; }
         }
     </style>
 </head>
