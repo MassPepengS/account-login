@@ -158,11 +158,11 @@
             margin-top: 20px;
         }
 
-        /* --- PERBAIKAN MOBILE (TIDAK BERTUMPUK) --- */
+        /* --- PERBAIKAN FINAL MOBILE --- */
         @media screen and (max-width: 650px) {
             .container {
                 width: 100%;
-                height: 100vh; /* Mengikuti tinggi layar agar pas */
+                height: 100vh;
                 max-height: 850px;
                 display: flex;
                 flex-direction: column;
@@ -171,11 +171,18 @@
 
             .form-box {
                 width: 100%;
-                height: 75%; /* Area form lebih besar */
+                height: 75%;
                 position: absolute;
+                left: 0; /* Pastikan login berada di tengah horizontal */
                 top: 0;
-                right: 0 !important;
                 padding: 30px;
+                transition: 0.6s ease-in-out;
+            }
+
+            /* Perbaikan: Login harus terlihat saat tidak aktif */
+            .form-box.login {
+                visibility: visible;
+                transform: translateY(0);
             }
 
             .container.active .form-box.login {
@@ -185,61 +192,57 @@
 
             .form-box.register {
                 transform: translateY(100%);
+                visibility: hidden;
             }
 
             .container.active .form-box.register {
                 transform: translateY(0);
                 visibility: visible;
-                top: 0;
             }
 
-            /* Efek transisi warna biru (Toggle Box) di mobile */
             .toggle-box::before {
                 left: 0;
                 top: -300%;
                 width: 100%;
                 height: 400%;
                 border-radius: 0;
-                transition: 1.2s ease-in-out;
             }
 
             .container.active .toggle-box::before {
-                top: 70%; /* Panel biru pindah ke bawah */
-                left: 0;
+                top: 70%;
             }
 
             .toggle-panel {
                 width: 100%;
-                height: 25%; /* Panel biru di bagian bawah */
+                height: 30%;
                 position: absolute;
                 left: 0 !important;
                 z-index: 5;
+                transition: 0.6s ease-in-out;
             }
 
-            /* Login Mode: Panel Register di atas (tetap tersembunyi/pindah) */
+            /* Posisikan panel biru tepat di bawah form */
             .toggle-left {
-                top: 75%; 
+                top: 70%; 
                 bottom: 0;
             }
 
             .container.active .toggle-left {
-                top: -30%;
+                top: -40%; /* Lempar ke atas saat register aktif */
             }
 
-            /* Register Mode: Panel Login di bawah */
             .toggle-right {
-                bottom: -30%;
+                top: 100%; /* Sembunyikan di bawah layar saat login aktif */
             }
 
             .container.active .toggle-right {
+                top: 70%; /* Muncul di bawah saat register aktif */
                 bottom: 0;
-                top: auto;
-                background: transparent;
             }
 
-            h1 { font-size: 24px; }
+            h1 { font-size: 28px; }
             .input-box { margin: 15px 0; }
-            .social-icons a { padding: 8px; font-size: 20px; }
+            .social-icons a { padding: 8px; font-size: 22px; }
         }
     </style>
 </head>
@@ -319,7 +322,6 @@
             container.classList.remove('active');
         });
 
-        // Fitur Toggle Password
         document.querySelectorAll('.toggle-pass').forEach(icon => {
             icon.addEventListener('click', function() {
                 const passwordInput = this.parentElement.querySelector('.password-input');
