@@ -329,6 +329,18 @@
         loginBtn.addEventListener('click', () => {
             container.classList.remove('active');
         });
-    </script>
-</body>
+        document.querySelectorAll('.toggle-pass').forEach(icon => {  
+            icon.addEventListener('click', function() {  
+                const passwordInput = this.parentElement.querySelector('.password-input');  
+                if (passwordInput.type === 'password') {  
+                    passwordInput.type = 'text';  
+                    this.classList.replace('bx-hide', 'bx-show');  
+                } else {  
+                    passwordInput.type = 'password';  
+                    this.classList.replace('bx-show', 'bx-hide');  
+                }  
+            });  
+        });  
+    </script>  
+</body>  
 </html>
