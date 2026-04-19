@@ -329,18 +329,24 @@
         loginBtn.addEventListener('click', () => {
             container.classList.remove('active');
         });
-        document.querySelectorAll('.toggle-password').forEach(icon => {  
-            icon.addEventListener('click', function() {  
-                const passwordInput = this.parentElement.querySelector('.password-input');  
-                if (passwordInput.type === 'password') {  
-                    passwordInput.type = 'text';  
-                    this.classList.replace('bx-hide', 'bx-show');  
-                } else {  
-                    passwordInput.type = 'password';  
-                    this.classList.replace('bx-show', 'bx-hide');  
-                }  
-            });  
-        });  
-    </script>  
+
+        document.querySelectorAll('.toggle-password').forEach(icon => {
+    icon.addEventListener('click', function () {
+
+        const input = this.parentElement.querySelector('input'); // ambil langsung input
+
+        if (!input) return;
+
+        if (input.type === "password") {
+            input.type = "text";
+            this.classList.replace('bx-hide', 'bx-show');
+        } else {
+            input.type = "password";
+            this.classList.replace('bx-show', 'bx-hide');
+        }
+
+    });
+});
+</script>
 </body>  
 </html>
