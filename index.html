@@ -107,14 +107,12 @@
     font-size: 14px;
     pointer-events: none;
     transition: 0.25s ease;
-    background: transparent;
 }
 
 /* Saat focus atau ada isi */
 .input-box input:focus ~ label,
 .input-box input:valid ~ label {
     top: -8px;
-    left: 15px;
     font-size: 12px;
     color: #6366f1;
     background: #1e293b;
@@ -124,7 +122,15 @@
         .input-box input:focus {
     border-color: #6366f1;
     box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
-}      
+} 
+
+        .input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
 
         .forgot-link {
             margin: -15px 0 15px;
