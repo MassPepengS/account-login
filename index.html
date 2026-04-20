@@ -228,6 +228,27 @@
             box-shadow: none;
         }
 
+/* Smooth transition untuk input */
+.input-box input {
+    transition: all 0.25s ease;
+}
+
+/* Animasi saat toggle */
+.input-box input.showing {
+    transform: scale(1.02);
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
+}
+
+/* Animasi icon */
+.toggle-password {
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.toggle-password.active {
+    transform: rotate(180deg) scale(1.2);
+    opacity: 0.8;
+}
+
         /* Mobile Responsive Tetap Sama */
         @media screen and (max-width: 650px) {
             .container { height: calc(100vh - 40px); }
