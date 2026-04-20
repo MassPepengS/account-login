@@ -339,39 +339,44 @@
     </div>
 
     <script>
-        const container = document.getElementById('container');
-        const registerBtn = document.getElementById('register');
-        const loginBtn = document.getElementById('login');
+const container = document.getElementById('container');
+const registerBtn = document.getElementById('register');
+const loginBtn = document.getElementById('login');
 
-        registerBtn.addEventListener('click', () => {
-            container.classList.add('active');
-        });
+registerBtn.addEventListener('click', () => {
+    container.classList.add('active');
+});
 
-        loginBtn.addEventListener('click', () => {
-            container.classList.remove('active');
-        });
+loginBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+});
 
-        document.querySelectorAll('.toggle-password').forEach(icon => {
+/* TOGGLE + ANIMASI HALUS */
+document.querySelectorAll('.toggle-password').forEach(icon => {
     icon.addEventListener('click', function () {
 
-        const input = this.parentElement.querySelector('input'); // ambil langsung input
-
+        const input = this.parentElement.querySelector('input');
         if (!input) return;
 
-        if (input.type === "password") {
-            input.type = "text";
-            this.classList.replace('bx-hide', 'bx-show');
-        } else {
-            input.type = "password";
-            this.classList.replace('bx-show', 'bx-hide');
-        }
+        /* aktifkan animasi */
+        input.classList.add('showing');
+        this.classList.add('active');
 
-        /* remove animasi */
+        setTimeout(() => {
+            if (input.type === "password") {
+                input.type = "text";
+                this.classList.replace('bx-hide', 'bx-show');
+            } else {
+                input.type = "password";
+                this.classList.replace('bx-show', 'bx-hide');
+            }
+
+            /* hapus animasi */
             input.classList.remove('showing');
             this.classList.remove('active');
-        }, 120); // delay kecil biar smooth
+
+        }, 120);
+
     });
 });
 </script>
-</body>  
-</html>
