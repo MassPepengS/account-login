@@ -362,6 +362,14 @@
     z-index: -1;
 }
 
+        .container:hover::before {
+    animation-duration: 1.5s;
+}
+
+.container:hover::after {
+    opacity: 1;
+}
+
 /* animasi utama */
 @keyframes spinBorder {
     0% { transform: rotate(0deg) scale(1); }
