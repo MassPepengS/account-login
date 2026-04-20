@@ -282,105 +282,49 @@
     opacity: 0.8;
 }
 
-        /* ===== ULTRA PREMIUM ANIMATED BORDER ===== */
+        /* === SNAKE BORDER ANIMATION (PANEL) === */
 .container {
     position: relative;
     z-index: 1;
-    overflow: hidden;
 }
 
-/* layer 1 (warna utama berputar) */
+/* layer animasi */
 .container::before {
+    opacity: 9.9;
     content: "";
     position: absolute;
-    inset: -3px;
+    inset: -2px; /* biar keluar sedikit */
     border-radius: 32px;
     background: conic-gradient(
         from 0deg,
+        transparent,
         #6366f1,
         #8b5cf6,
-        #ec4899,
-        #22c55e,
-        #06b6d4,
-        #6366f1
+        #6366f1,
+        transparent
     );
-    animation: spinBorder 3s linear infinite;
-    z-index: -2;
+    animation: rotateBorder 2s linear infinite;
+    z-index: -1;
 }
 
-/* layer 2 (glow blur besar) */
+/* layer dalam (biar jadi border saja, bukan full fill) */
 .container::after {
     content: "";
     position: absolute;
-    inset: -8px;
-    border-radius: 35px;
-    background: inherit;
-    filter: blur(20px);
-    opacity: 0.7;
-    animation: spinBorderReverse 6s linear infinite;
-    z-index: -3;
-}
-
-/* inner layer (biar tetap panel gelap) */
-.container > * {
-    position: relative;
-    z-index: 2;
-}
-
-.container::marker {}
-
-/* overlay tengah (biar jadi border, bukan full warna) */
-.container::after,
-.container::before {
-    pointer-events: none;
-}
-
-/* lapisan penutup dalam */
-.container::after,
-.container::before {
-}
-
-/* TAMBAH INNER COVER */
-.container::before {
-}
-
-.container::after {
-}
-
-/* layer penutup dalam */
-.container::before,
-.container::after {
-}
-
-/* SOLUSI FIX (INNER DARK PANEL) */
-.container::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
+    inset: 2px;
     background: #1e293b;
     border-radius: 30px;
     z-index: -1;
 }
 
-        .container:hover::before {
-    animation-duration: 1.5s;
-}
-
-.container:hover::after {
-    opacity: 1;
-}
-
-/* animasi utama */
-@keyframes spinBorder {
-    0% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.03); }
-    100% { transform: rotate(360deg) scale(1); }
-}
-
-/* animasi glow beda arah */
-@keyframes spinBorderReverse {
-    0% { transform: rotate(360deg); }
-    100% { transform: rotate(0deg); }
+/* animasi muter */
+@keyframes rotateBorder {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
         /* Mobile Responsive Tetap Sama */
