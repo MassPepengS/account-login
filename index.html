@@ -84,36 +84,34 @@
         }
 
         .input-box {
-            position: relative;
-            margin: 30px 0;
-        }
+    position: relative;
+}
 
-        .input-box input {
-            width: 100%;
-            padding: 13px 50px 13px 20px;
-            /* Update: Latar input lebih gelap */
-            background: #334155;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            outline: none;
-            font-size: 16px;
-            color: #fff;
-            font-weight: 500;
-        }
+/* Label default */
+.input-box label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.25s ease;
+    background: transparent;
+}
 
-        .input-box input::placeholder {
-            color: #94a3b8;
-            font-weight: 400;
-        }
+/* Saat focus atau ada isi */
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -8px;
+    left: 15px;
+    font-size: 12px;
+    color: #6366f1;
+    background: #1e293b;
+    padding: 0 5px;
+}
 
-        .input-box i {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-            color: #fff;
-        }
+        
 
         .forgot-link {
             margin: -15px 0 15px;
