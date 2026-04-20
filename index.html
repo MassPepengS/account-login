@@ -138,6 +138,22 @@
             font-weight: 600;
         }
 
+        /* Hover effect tombol utama */
+.btn {
+    transition: all 0.25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Efek klik (biar terasa responsif) */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
         .social-icons {
             display: flex;
             justify-content: center;
